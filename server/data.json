@@ -1,22 +1,16 @@
 {
   "maincategory": [
     {
-      "name": "Male",
-      "pic": "maincategory/banner1.jpg",
-      "status": true,
-      "id": "a07e"
-    },
-    {
-      "id": "334b",
-      "name": "Female",
-      "pic": "maincategory/banner5.jpg",
+      "id": "a1b9",
+      "name": "Kids",
+      "pic": "maincategory/kids.jpg",
       "status": true
     },
     {
-      "id": "a396",
-      "name": "Kids",
-      "pic": "maincategory/kids.jpg",
-      "status": ""
+      "name": "Male",
+      "pic": "maincategory/banner1.jpg",
+      "status": true,
+      "id": "412e"
     }
   ],
   "subcategory": [],

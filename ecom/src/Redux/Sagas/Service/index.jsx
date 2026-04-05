@@ -37,12 +37,6 @@ export async function createMultipartRecord(collection, payload) {
 
 export async function getRecord(collection) {
     try {
-
-        console.log("🌐 API URL:", import.meta.env.VITE_APP_BACKEND_SERVER)
-
-        let url = `${import.meta.env.VITE_APP_BACKEND_SERVER}/${collection}`
-        console.log("📡 Fetching:", url)
-
         let response = await fetch(`${import.meta.env.VITE_APP_BACKEND_SERVER}/${collection}`, {
             method: "GET",
             headers: {

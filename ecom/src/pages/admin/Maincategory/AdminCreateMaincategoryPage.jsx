@@ -5,6 +5,7 @@ import FormValidators from '../../../Validators/FormValidators'
 import ImageValidators from '../../../Validators/ImageValidators'
 
 import { useSelector, useDispatch } from 'react-redux'
+import {getMaincategory, createMaincategory} from "../../../Redux/ActionCreators/MaincategoryActionCreators"
 
 export default function AdminCreateMaincategoryPage() {
     let [data,setData] = useState({
@@ -13,7 +14,8 @@ export default function AdminCreateMaincategoryPage() {
         status : ""
     })
 
-    let [maincategoryStateData, setMaincategoryStateData] = useState([])
+    let MaincategoryStateData = useSelector(state => state.MaincategoryStateData)
+    let dispatch = useDispatch()
 
     let navigate = useNavigate()
 
@@ -33,37 +35,26 @@ export default function AdminCreateMaincategoryPage() {
     }
 
     useEffect(() => {
-            (async () => {
-                let response = await fetch(`${import.meta.env.VITE_APP_BACKEND_SERVER}/maincategory`, {
-                    method: "GET",
-                    headers: { "content-type": "application/json" }
-                })
-                response = await response.json()
-                setMaincategoryStateData(response)
-                
-            })()
-        }, [])
+        (()=>{
+            dispatch(getMaincategory())
+        })()
+    }, [MaincategoryStateData.length])
     
-    async function postData(e){
+    function postData(e){
         e.preventDefault()
         let error = Object.values(errormessage).find(x=>x!="")
         if(error)
             setShow(true)
         else{
-            let item = maincategoryStateData.find(x=> x.name.toLocaleLowerCase() === data.name.toLocaleLowerCase())
+            let item = MaincategoryStateData.find(x=> x.name.toLocaleLowerCase() === data.name.toLocaleLowerCase())
             if(item){
                 setErrormessage({...errormessage,name:"Maincategory with this name is already exist"})
                 setShow(true)
                 return
             }
-            let response = await fetch(`${import.meta.env.VITE_APP_BACKEND_SERVER}/maincategory`,{
-                method: "POST",
-                headers: {"content-type": "application/json"},
-                body: JSON.stringify({...data})
-           })
-           response = await response.json()
-         navigate('/admin/maincategory')
-         alert("Success")
+            dispatch(createMaincategory(data))
+            navigate('/admin/maincategory')
+            alert("Success")
         }
         
          
