@@ -29,6 +29,7 @@ export default function AdminCreateMaincategoryPage() {
     function getInputData(e){
             let name = e.target.name
             let value = name==="pic"? "maincategory/"+e.target.files[0].name : e.target.value
+         // let value = name==="pic"? e.target.files[0].name : e.target.value
 
             setData({...data, [name]: name==="status"?(value==="1"?true:false):value})
             setErrormessage({...errormessage,[name]: name==="pic"? ImageValidators(e):FormValidators(e)})
@@ -52,7 +53,14 @@ export default function AdminCreateMaincategoryPage() {
                 setShow(true)
                 return
             }
-            dispatch(createMaincategory(data))
+            dispatch(createMaincategory({...data}))
+
+            // let formData = new FormData()
+            // formData.append("name",data.name)
+            // formData.append("pic",data.pic)
+            // formData.append("status",data.status)
+            // dispatch(createMaincategory(formData))
+
             navigate('/admin/maincategory')
             alert("Success")
         }

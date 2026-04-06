@@ -6,34 +6,39 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import FormValidators from '../../../Validators/FormValidators'
 import ImageValidators from '../../../Validators/ImageValidators'
 import AdminSideBar from '../../../Components/admin/AdminSideBar'
+import { useSelector, useDispatch } from 'react-redux'
+import { getMaincategory, updateMaincategory } from '../../../Redux/ActionCreators/MaincategoryActionCreators'
 
 
 
 
 
 export default function AdminUpdateMaincategoryPage() {
-    let [data,setData] = useState({
-        name : "",
-        pic : "",
-        status : ""
-    })
 
     let {id} = useParams()
 
-    let [maincategoryStateData, setMaincategoryStateData] = useState([])
-
-    let navigate = useNavigate()
+    let [data,setData] = useState({
+        name : "",
+        pic : "",
+        status : true
+    })
 
     let [errormessage, setErrormessage] = useState({
         name : "",
         pic : ""
     })
 
-    let [show, setShow] = useState(false)
+    let navigate = useNavigate()
+    let [show, setShow] = useState (false)
+
+    let MaincategoryStateData = useSelector(state=> state.MaincategoryStateData)
+    let dispatch = useDispatch()
+
 
     function getInputData(e){
             let name = e.target.name
             let value = name==="pic"? "maincategory/"+e.target.files[0].name : e.target.value
+            // let value = name==="pic"?  e.target.files[0].name : e.target.value
 
             setData({...data, [name]: name==="status"?(value==="1"?true:false):value})
             setErrormessage({...errormessage,[name]: name==="pic"? ImageValidators(e):FormValidators(e)})
@@ -41,25 +46,27 @@ export default function AdminUpdateMaincategoryPage() {
 
     
     
-    async function postData(e){
+    function postData(e){
         e.preventDefault()
         let error = Object.values(errormessage).find(x=>x!="")
         if(error)
             setShow(true)
         else{
-            let item = maincategoryStateData.find(x=> x.id!==id && x.name.toLocaleLowerCase() === data.name.toLocaleLowerCase())
+            let item = MaincategoryStateData.find(x=> x.id !==id && (x.name.toLocaleLowerCase() === data.name.toLocaleLowerCase()))
             if(item){
                 setErrormessage({...errormessage,name:"Maincategory with this name is already exist"})
                 setShow(true)
                 return
             }
-            let response = await fetch(`${import.meta.env.VITE_APP_BACKEND_SERVER}/maincategory/${id}`,{
-                method: "PUT",
-                headers: {"content-type": "application/json"},
-                body: JSON.stringify({...data})
-                
-           })
-           response = await response.json()
+            dispatch(updateMaincategory({...data}))
+
+            // let formData = new FormData()
+            // formData.append("id",data.id)
+            // formData.append("name",data.name)
+            // formData.append("pic",data.pic)
+            // formData.append("status",data.status)
+            // dispatch(updateMaincategory({...data}))
+
          navigate('/admin/maincategory')
         }
         
@@ -68,23 +75,19 @@ export default function AdminUpdateMaincategoryPage() {
     }
 
     useEffect(() => {
-            (async () => {
-                let response = await fetch(`${import.meta.env.VITE_APP_BACKEND_SERVER}/maincategory`, {
-                    method: "GET",
-                    headers: { "content-type": "application/json" }
-                })
-                response = await response.json()
-                setMaincategoryStateData(response)
-                let item = response.find(x=> x.id===id)
+            (() => {
+                dispatch(getMaincategory())
+
+                if(MaincategoryStateData.length){
+                let item = MaincategoryStateData.find(x=> x.id===id)
                 if(item){
                     setData({...data,...item})
                 }
-                else{
+                else
                     navigate("/admin/maincategory")
-                }
-                  
-            })()
-        }, [])
+                
+            }})()
+        }, [MaincategoryStateData.length])
 
 
   return (
@@ -123,7 +126,7 @@ export default function AdminUpdateMaincategoryPage() {
 
 
                                     <div className="col-12 mb-5">
-                                        <button className='btn btn-primary btn-lg w-100 mybackground p-3'>Create</button>
+                                        <button className='btn btn-primary btn-lg w-100 mybackground p-3'>Update</button>
                                     </div>
                                 </div>
                             </form>
