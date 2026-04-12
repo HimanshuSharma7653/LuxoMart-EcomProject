@@ -4,32 +4,32 @@ import {  createRecord, deleteRecord, getRecord, updateRecord } from "./Service/
 // import { createMultipartRecord, deleteRecord, getRecord, updateMultipartRecord } from "./Service/index"
 
 function* createSaga(action){
-    let response = yield createRecord("settingcategory",action.payload)
+    let response = yield createRecord("setting",action.payload)
     yield put({type: CREATE_SETTING_RED ,payload:response})
 
-    // let response = yield createMultipartRecord("settingcategory",action.payload)
+    // let response = yield createMultipartRecord("setting",action.payload)
     // yield put({type: CREATE_SETTING_RED, payload: response})
 }
 
 function* getSaga(action){
     
     
-    let response = yield getRecord("settingcategory")
+    let response = yield getRecord("setting")
     console.log("📤 Dispatching to reducer", response)
     
     yield put({type: GET_SETTING_RED,payload:response})
 
 }
 function* updateSaga(action){
-    yield updateRecord("settingcategory",action.payload)
+    yield updateRecord("setting",action.payload)
     yield put({type:UPDATE_SETTING_RED, payload:action.payload})
 
-    // let response = yield updateMultipartRecord("settingcategory",action.payload)
+    // let response = yield updateMultipartRecord("setting",action.payload)
     // yield put({type: UPDATE_SETTING_RED, payload: response})
 }
 
 function* deleteSaga(action){
-    yield deleteRecord("settingcategory",action.payload)
+    yield deleteRecord("setting",action.payload)
     yield put({type: DELETE_SETTING_RED ,payload: action.payload})
 }
 

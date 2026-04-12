@@ -40,6 +40,8 @@ import AdminCreateFaqPage from "./pages/admin/Faq/AdminCreateFaqPage";
 import AdminFaqPage from "./pages/admin/Faq/AdminFaqPage";
 import AdminUpdateFaqPage from "./pages/admin/Faq/AdminUpdateFaqPage";
 
+import AdminSettingPage from "./pages/admin/Setting/AdminSettingPage";
+
 
 export default function App() {
   return (
@@ -82,6 +84,8 @@ export default function App() {
           <Route path="/admin/faq/create" element={<AdminCreateFaqPage/>}/>
           <Route path="/admin/faq" element={<AdminFaqPage/>}/>
           <Route path="/admin/faq/update/:id" element={<AdminUpdateFaqPage/>}/>
+
+          <Route path="/admin/setting" element={<AdminSettingPage/>}/>
 
           
 

@@ -130,7 +130,27 @@
       "status": true
     }
   ],
-  "setting": [],
+  "setting": [
+    {
+      "map1": "https://www.google.com/maps/place/Shri+ram+hospital/@28.5571989,77.3722192,316m/data=!3m2!1e3!5s0x390ce5f0b66bf89f:0x32df1f8be2a6262d!4m6!3m5!1s0x390ce5f0a633aa11:0x121736331746e3fa!8m2!3d28.5579202!4d77.3719837!16s%2Fg%2F1ptwy_0_k?entry=ttu&g_ep=EgoyMDI2MDEyNS4wIKXMDSoASAFQAw%3D%3D",
+      "map2": "https://maps.google.com/maps?width=600&height=400&hl=en&q=SHREE%20RAM%20HOSPITAL%2C%20SECTOR%2049%20BARAULA%20&t=&z=17&ie=UTF8&iwloc=B&output=embed",
+      "address": "",
+      "siteName": "Luxo Mart test",
+      "logoTop": "logo/logo-bright.png",
+      "logoBottom": "logo/logo-dark.png",
+      "email": "Nothingness@gmail.com",
+      "phone": "9368357653",
+      "whatsapp": "933837653",
+      "privacyPolicy": "",
+      "termsCondition": "",
+      "facebook": "",
+      "twitter": "",
+      "linkedin": "",
+      "instagram": "",
+      "youtube": "",
+      "id": "9f4d"
+    }
+  ],
   "user": [],
   "cart": [],
   "checkout": [],

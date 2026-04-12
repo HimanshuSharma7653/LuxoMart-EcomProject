@@ -15,7 +15,7 @@ export default function AdminSideBar() {
         <Link to="/admin/faq" className="list-group-item mybackground text-light" aria-current="true"><i className="bi bi-question-circle"></i><span className="float-end mt-2">Faq</span></Link>
         <Link to="/admin/privacy-policy" className="list-group-item mybackground text-light" aria-current="true"><i className="bi bi-house-lock"></i><span className="float-end mt-2">Privacy-policy</span></Link>
         <Link to="/admin/terms-conditions" className="list-group-item mybackground text-light" aria-current="true"><i className="bi bi-shield-exclamation"></i><span className="float-end mt-2">Terms-Conditions</span></Link>
-        <Link to="/admin/settings" className="list-group-item mybackground text-light" aria-current="true"><i className="bi bi-house-gear"></i><span className="float-end mt-2">Settings</span></Link>
+        <Link to="/admin/setting" className="list-group-item mybackground text-light" aria-current="true"><i className="bi bi-house-gear"></i><span className="float-end mt-2">Settings</span></Link>
         <Link to="/admin/newsletter" className="list-group-item mybackground text-light" aria-current="true"><i className="bi bi-envelope"></i><span className="float-end mt-2">Newsletter</span></Link>
         <Link to="/admin/contact" className="list-group-item mybackground text-light" aria-current="true"><i className="bi bi-telephone-inbound"></i><span className="float-end mt-2">Contact us</span></Link>
         <Link to="/admin/checkout" className="list-group-item mybackground text-light" aria-current="true"><i className="bi bi-cart-check"></i><span className="float-end mt-2">Checkout</span></Link>
